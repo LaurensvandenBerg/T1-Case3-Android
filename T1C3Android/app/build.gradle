@@ -1,0 +1,49 @@
+apply plugin: 'com.android.application'
+apply plugin: 'sonar-runner'
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion "23.0.2"
+
+    defaultConfig {
+        applicationId "com.pizza.tom.t1c3android"
+        minSdkVersion 17
+        targetSdkVersion 23
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        debug {
+            testCoverageEnabled = true
+        }
+
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+sonarRunner {
+    sonarProperties {
+        property 'sonar.host.url', 'http://localhost:9000'
+
+        property 'sonar.projectKey', 'AndroidTest'
+        property 'sonar.projectName', 'AndroidTest'
+        property 'sonar.projectVersion', '1.0'
+
+        property 'sonar.language', 'java'
+        property 'sonar.sourceEncoding', 'UTF-8'
+
+        property 'sonar.sources', 'src/main/java'
+        property 'sonar.binaries', 'build'
+        property 'sonar.test', 'src/androidTest/java'
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    testCompile 'junit:junit:4.12'
+    compile 'com.android.support:appcompat-v7:23.1.1'
+    compile 'com.android.support:design:23.1.1'
+}
