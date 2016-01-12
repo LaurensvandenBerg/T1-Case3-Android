@@ -1,31 +1,22 @@
-package com.kantilever.t1c3android.activities;
+package com.kantilever.t1c3android;
 
-import android.content.Intent;
-import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import android.view.View;
-import com.kantilever.t1c3android.PackOrder;
-import com.kantilever.t1c3android.R;
-
-public class MainActivity extends AppCompatActivity {
+public class PackOrder extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
+        setContentView(R.layout.activity_pack_order);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.menu_pack_order, menu);
         return true;
     }
 
@@ -43,8 +34,6 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
-    public void onPackOrder(View view){
-        Intent intent = new Intent(this, PackOrder.class);
-        startActivity(intent);
-    }
+
+
 }
