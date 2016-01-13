@@ -38,4 +38,7 @@ public class OrderAdapter extends ArrayAdapter<OrderItem> {
         // Return the completed view to render on screen
         return convertView;
     }
+    public void addView(){
+
+    }
 }

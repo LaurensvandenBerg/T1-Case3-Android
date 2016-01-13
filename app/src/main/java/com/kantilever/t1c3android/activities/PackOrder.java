@@ -7,6 +7,9 @@ import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import com.kantilever.t1c3android.R;
+import com.kantilever.t1c3android.adapters.OrderAdapter;
+import com.kantilever.t1c3android.models.OrderItem;
+import org.json.JSONArray;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,10 +17,11 @@ import java.util.List;
 public class PackOrder extends AppCompatActivity {
 
     List<Integer> testArray;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pack_order);
+        setContentView(R.layout.content_pack_order);
     }
 
     @Override
@@ -42,13 +46,12 @@ public class PackOrder extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public boolean onLoadData() {
-        ArrayAdapter<Integer> itemsAdapter =
-                new ArrayAdapter<Integer>(this, android.R.layout.simple_list_item_1, testArray);
+    public void loadData() {
+        ArrayList<OrderItem> orderList = new ArrayList<OrderItem>();
+        OrderAdapter orderAdapter = new OrderAdapter(this, orderList);
+        OrderItem newOrderItem = new OrderItem(1, "DONE");
+        orderAdapter.add(newOrderItem);
         ListView listView = (ListView) findViewById(R.id.packOrderList);
-        listView.setAdapter(itemsAdapter);
-        return true;
+        listView.setAdapter(orderAdapter);
     }
-
-
 }
