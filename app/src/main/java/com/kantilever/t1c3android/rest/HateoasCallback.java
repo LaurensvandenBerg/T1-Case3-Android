@@ -2,29 +2,37 @@ package com.kantilever.t1c3android.rest;
 
 import android.util.Log;
 
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+
 import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 
 /**
- * Created by Tom on 12-1-2016.
+ * The type Hateoas callback.
  */
-public class HateoasCallback implements Callback<HateoasResponse> {
+public class HateoasCallback implements Callback<JsonElement> {
 
-    private static HateoasResponse result;
+    private static JsonObject result;
 
     @Override
-    public void success(HateoasResponse hateoasResponse, Response response) {
-        result = hateoasResponse;
+    public void success(JsonElement hateoasResponse, Response response) {
+        result = hateoasResponse.getAsJsonObject();
     }
 
     @Override
     public void failure(RetrofitError error) {
         Log.i("HateoasCallback", error.getMessage());
-        result = new HateoasResponse("Fail");
+        result = new JsonObject();
     }
 
-    public HateoasResponse getResult(){
+    /**
+     * Get result json object.
+     *
+     * @return the json object
+     */
+    public JsonObject getResult(){
         return result;
     }
 }

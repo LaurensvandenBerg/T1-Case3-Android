@@ -1,7 +1,7 @@
 package com.kantilever.t1c3android.rest;
 
 /**
- * Created by Tom on 11-1-2016.
+ * The type Hateoas response.
  */
 public class HateoasResponse {
     private Object content;
@@ -15,10 +15,20 @@ public class HateoasResponse {
         this.content = content;
     }
 
+    /**
+     * Gets content.
+     *
+     * @return the content
+     */
     public Object getContent() {
         return content;
     }
 
+    /**
+     * Sets content.
+     *
+     * @param content the content
+     */
     public void setContent(Object content) {
         this.content = content;
     }

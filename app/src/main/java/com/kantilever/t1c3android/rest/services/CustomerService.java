@@ -8,7 +8,7 @@ import retrofit.RestAdapter;
 import retrofit.client.OkClient;
 
 /**
- * Created by Tom on 12-1-2016.
+ * The type Customer service.
  */
 public class CustomerService extends AbsClient {
     private static CustomerAPI REST_CLIENT;
@@ -19,6 +19,11 @@ public class CustomerService extends AbsClient {
 
     private CustomerService() {}
 
+    /**
+     * Get customer api.
+     *
+     * @return the customer api
+     */
     public static CustomerAPI get() {
         return REST_CLIENT;
     }

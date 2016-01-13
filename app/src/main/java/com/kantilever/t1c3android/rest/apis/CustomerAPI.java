@@ -1,7 +1,7 @@
 package com.kantilever.t1c3android.rest.apis;
 
+import com.google.gson.JsonElement;
 import com.kantilever.t1c3android.domain.abs.PersistenceEntity;
-import com.kantilever.t1c3android.rest.HateoasResponse;
 
 import retrofit.Callback;
 import retrofit.http.DELETE;
@@ -10,23 +10,52 @@ import retrofit.http.POST;
 import retrofit.http.PUT;
 import retrofit.http.Path;
 
-
 /**
- * Created by Tom on 12-1-2016.
+ * The interface Customer api.
  */
 public interface CustomerAPI {
+    /**
+     * Gets all.
+     *
+     * @param callback the callback
+     */
     @GET("/customers")
-    void getAll(Callback<HateoasResponse> callback);
+    void getAll(Callback<JsonElement> callback);
 
+    /**
+     * Gets by id.
+     *
+     * @param id       the id
+     * @param callback the callback
+     */
     @GET("/customers/{id}")
-    void getById(@Path("id") String id, Callback<HateoasResponse> callback);
+    void getById(@Path("id") String id, Callback<JsonElement> callback);
 
+    /**
+     * Save.
+     *
+     * @param entity   the entity
+     * @param callback the callback
+     */
     @POST("/customers")
-    void save(PersistenceEntity entity, Callback<HateoasResponse> callback);
+    void save(PersistenceEntity entity, Callback<JsonElement> callback);
 
+    /**
+     * Update.
+     *
+     * @param id       the id
+     * @param entity   the entity
+     * @param callback the callback
+     */
     @PUT("/customers/{id}")
-    void update(@Path("id") String id, PersistenceEntity entity, Callback<HateoasResponse> callback);
+    void update(@Path("id") String id, PersistenceEntity entity, Callback<JsonElement> callback);
 
+    /**
+     * Delete.
+     *
+     * @param id       the id
+     * @param callback the callback
+     */
     @DELETE("/customers/{id}")
-    void delete(@Path("id") String id, Callback<HateoasResponse> callback);
+    void delete(@Path("id") String id, Callback<JsonElement> callback);
 }
