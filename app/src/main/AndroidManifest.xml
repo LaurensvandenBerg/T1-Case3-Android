@@ -21,7 +21,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".PackOrder"
+            android:name=".activities.PackOrder"
             android:label="@string/title_activity_pack_order" >
         </activity>
     </application>

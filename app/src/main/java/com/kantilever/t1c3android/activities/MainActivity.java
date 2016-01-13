@@ -8,7 +8,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import android.view.View;
-import com.kantilever.t1c3android.PackOrder;
 import com.kantilever.t1c3android.R;
 
 public class MainActivity extends AppCompatActivity {
@@ -19,7 +18,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
     }
 
     @Override
@@ -43,7 +41,8 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
-    public void onPackOrder(View view){
+
+    public void onPackOrder(View view) {
         Intent intent = new Intent(this, PackOrder.class);
         startActivity(intent);
     }

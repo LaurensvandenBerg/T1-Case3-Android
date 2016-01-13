@@ -1,12 +1,19 @@
-package com.kantilever.t1c3android;
+package com.kantilever.t1c3android.activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import com.kantilever.t1c3android.R;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class PackOrder extends AppCompatActivity {
 
+    List<Integer> testArray;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +40,14 @@ public class PackOrder extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public boolean onLoadData() {
+        ArrayAdapter<Integer> itemsAdapter =
+                new ArrayAdapter<Integer>(this, android.R.layout.simple_list_item_1, testArray);
+        ListView listView = (ListView) findViewById(R.id.packOrderList);
+        listView.setAdapter(itemsAdapter);
+        return true;
     }
 
 
