@@ -49,8 +49,13 @@ public class PackOrder extends AppCompatActivity {
     public void loadData() {
         ArrayList<OrderItem> orderList = new ArrayList<OrderItem>();
         OrderAdapter orderAdapter = new OrderAdapter(this, orderList);
+
         OrderItem newOrderItem = new OrderItem(1, "DONE");
+        OrderItem newOrderItem2 = new OrderItem(2, "DONE");
+
         orderAdapter.add(newOrderItem);
+        orderAdapter.add(newOrderItem2);
+
         ListView listView = (ListView) findViewById(R.id.packOrderList);
         listView.setAdapter(orderAdapter);
     }
