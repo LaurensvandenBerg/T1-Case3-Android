@@ -1,17 +1,20 @@
 package com.kantilever.t1c3android.activities;
 
 import android.os.Bundle;
+import android.support.v4.view.MenuItemCompat;
+import android.support.v4.widget.SearchViewCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.InputType;
 import android.util.Log;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.SearchView;
 import android.widget.TextView;
 
 import com.google.gson.JsonArray;
@@ -37,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
 
     private ListView orderList;
     private List<CustomerOrder> customerOrders = new ArrayList<>();
-    private List<CustomerOrder> filterd = new ArrayList<>();
+    private List<CustomerOrder> filtered = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,9 +55,27 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.menu_main, menu);
 
+        MenuItem searchItem = menu.findItem(R.id.action_search);
+        SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
+        SearchViewCompat.setInputType(searchView, InputType.TYPE_CLASS_NUMBER);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                search(query);
+                refresh();
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                search(newText);
+                refresh();
+                return false;
+            }
+        });
+        searchView.requestFocus();
         return true;
     }
 
@@ -66,26 +87,28 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         switch (id) {
-            case R.id.action_settings:
-                return true;
             case R.id.action_refresh:
                 OrderService.get().getAll(getResult());
                 break;
         }
         return super.onOptionsItemSelected(item);
     }
-    public void refresh(){
+
+    /**
+     * Refresh.
+     */
+    public void refresh() {
         CustomerOrder[] orderArray = {};
-        orderArray = filterd.toArray(orderArray);
+        orderArray = filtered.toArray(orderArray);
         orderList.setAdapter(new OrderAdapter(this, orderArray));
         orderList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position,
                                     long id) {
                 RelativeLayout rl = (RelativeLayout) view;
-                String item = ((TextView)rl.findViewById(R.id.order_item_row)).getText().toString();
+                String item = ((TextView) rl.findViewById(R.id.order_item_row)).getText().toString();
                 CustomerOrder openDialog = null;
-                for (CustomerOrder customerOrder : filterd)
+                for (CustomerOrder customerOrder : filtered)
                     if (customerOrder.getOrderId().equals(item)) {
                         openDialog = customerOrder;
                         break;
@@ -96,8 +119,12 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public void show(final CustomerOrder customerOrder)
-    {
+    /**
+     * Show.
+     *
+     * @param customerOrder the customer order
+     */
+    public void show(final CustomerOrder customerOrder) {
         OrderDialog orderDialog = new OrderDialog(customerOrder, this);
         WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
         lp.copyFrom(orderDialog.getWindow().getAttributes());
@@ -107,14 +134,25 @@ public class MainActivity extends AppCompatActivity {
         orderDialog.getWindow().setAttributes(lp);
     }
 
-    private Callback<JsonElement> getResult(){
+    private void search(String query) {
+        filtered = new ArrayList<>();
+        if (query.isEmpty() || query.equals(""))
+            filtered = customerOrders;
+        else
+            for (CustomerOrder customerOrder : customerOrders)
+                if (customerOrder.getOrderId().startsWith(query)) {
+                    filtered.add(customerOrder);
+                }
+    }
+
+    private Callback<JsonElement> getResult() {
         return new Callback<JsonElement>() {
 
             @Override
             public void success(JsonElement jsonElement, Response response) {
                 JsonArray jsonArray = jsonElement.getAsJsonObject().getAsJsonArray("content");
                 customerOrders = GsonConverter.convertArray(jsonArray, CustomerOrder.class);
-                filterd = customerOrders;
+                search("");
                 refresh();
             }
 

@@ -40,8 +40,9 @@ public class GsonConverter {
     /**
      * Convert t.
      *
-     * @param <T>     the type parameter
-     * @param clazz   the clazz
+     * @param <T>   the type parameter
+     * @param array the array
+     * @param clazz the clazz
      * @return the t
      */
     public static <T> List<T> convertArray(JsonArray array, Class clazz) {

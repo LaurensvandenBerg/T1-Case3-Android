@@ -15,10 +15,22 @@ import com.kantilever.t1c3android.domain.rest.CustomerOrder;
  */
 public class OrderAdapter extends BaseAdapter {
 
+    /**
+     * The Context.
+     */
     Context context;
+    /**
+     * The Data.
+     */
     CustomerOrder[] data;
     private static LayoutInflater inflater = null;
 
+    /**
+     * Instantiates a new Order adapter.
+     *
+     * @param context the context
+     * @param data    the data
+     */
     public OrderAdapter(Context context, CustomerOrder[] data) {
         // TODO Auto-generated constructor stub
         this.context = context;

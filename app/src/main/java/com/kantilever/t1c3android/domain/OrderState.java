@@ -8,7 +8,13 @@ public enum OrderState {
      * Running order state.
      */
     RUNNING("Openstaand"),
+    /**
+     * Packaged order state.
+     */
     PACKAGED("Verpakt"),
+    /**
+     * Shipped order state.
+     */
     SHIPPED("Verscheept");
 
     private String name;
@@ -22,6 +28,12 @@ public enum OrderState {
         this.name = name;
     }
 
+    /**
+     * Find order state order state.
+     *
+     * @param name the name
+     * @return the order state
+     */
     public static OrderState findOrderState(String name) {
         OrderState state = null;
         for(OrderState orderState : OrderState.values())

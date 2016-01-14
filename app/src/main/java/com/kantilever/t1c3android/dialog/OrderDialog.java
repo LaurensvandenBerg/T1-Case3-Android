@@ -19,15 +19,42 @@ import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 
+/**
+ * The type Order dialog.
+ */
 public class OrderDialog extends Dialog {
 
+    /**
+     * The Order id text view.
+     */
     TextView orderIdTextView;
+    /**
+     * The Order status text view.
+     */
     TextView orderStatusTextView;
+    /**
+     * The Shipping.
+     */
     Button shipping;
+    /**
+     * The Giftingpackage.
+     */
     Button giftingpackage;
+    /**
+     * The Customer order.
+     */
     CustomerOrder customerOrder;
+    /**
+     * The Activity.
+     */
     MainActivity activity;
 
+    /**
+     * Instantiates a new Order dialog.
+     *
+     * @param customerOrder the customer order
+     * @param activity      the activity
+     */
     public OrderDialog(final CustomerOrder customerOrder, final MainActivity activity) {
         super(activity);
         this.customerOrder = customerOrder;
