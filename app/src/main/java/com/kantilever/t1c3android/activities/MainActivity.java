@@ -1,11 +1,11 @@
 package com.kantilever.t1c3android.activities;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
@@ -36,7 +36,8 @@ import retrofit.client.Response;
 public class MainActivity extends AppCompatActivity {
 
     private ListView orderList;
-    private List<CustomerOrder> customerOrders = new ArrayList();
+    private List<CustomerOrder> customerOrders = new ArrayList<>();
+    private List<CustomerOrder> filterd = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +52,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_main, menu);
+
         return true;
     }
 
@@ -62,22 +65,18 @@ public class MainActivity extends AppCompatActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        switch (id) {
+            case R.id.action_settings:
+                return true;
+            case R.id.action_refresh:
+                OrderService.get().getAll(getResult());
+                break;
         }
-
         return super.onOptionsItemSelected(item);
     }
-
-    public void onPackOrder(View view) {
-        Intent intent = new Intent(this, PackOrder.class);
-        startActivity(intent);
-    }
-
     public void refresh(){
         CustomerOrder[] orderArray = {};
-        orderArray = customerOrders.toArray(orderArray);
+        orderArray = filterd.toArray(orderArray);
         orderList.setAdapter(new OrderAdapter(this, orderArray));
         orderList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -86,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
                 RelativeLayout rl = (RelativeLayout) view;
                 String item = ((TextView)rl.findViewById(R.id.order_item_row)).getText().toString();
                 CustomerOrder openDialog = null;
-                for (CustomerOrder customerOrder : customerOrders)
+                for (CustomerOrder customerOrder : filterd)
                     if (customerOrder.getOrderId().equals(item)) {
                         openDialog = customerOrder;
                         break;
@@ -115,6 +114,7 @@ public class MainActivity extends AppCompatActivity {
             public void success(JsonElement jsonElement, Response response) {
                 JsonArray jsonArray = jsonElement.getAsJsonObject().getAsJsonArray("content");
                 customerOrders = GsonConverter.convertArray(jsonArray, CustomerOrder.class);
+                filterd = customerOrders;
                 refresh();
             }
 

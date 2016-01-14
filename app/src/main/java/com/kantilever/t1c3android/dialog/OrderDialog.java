@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -36,6 +37,7 @@ public class OrderDialog extends Dialog {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.order_item_dialog);
         orderIdTextView = (TextView) findViewById(R.id.order_id_dialog);
         orderStatusTextView = (TextView) findViewById(R.id.order_status_dialog);
