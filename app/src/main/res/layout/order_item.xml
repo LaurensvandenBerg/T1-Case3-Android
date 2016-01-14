@@ -1,21 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center">
 
-    <TextView
-            android:id="@+id/tvOrderID"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="OrderID"/>
-    <Button
-            android:id="@+id/btDetail"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Details"/>
-    <Button
-            android:id="@+id/btPack"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Inpakken"/>
-</LinearLayout>
+
+    <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/order_item_row_labelid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/orderid" />
+
+    <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/order_item_row"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/order_item_row_labelid"/>
+
+    <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/order_item_row_labelstatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/order_item_row_labelid"
+        android:text="@string/orderstatus" />
+
+    <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/order_item_row_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/order_item_row"
+        android:layout_toEndOf="@id/order_item_row_labelstatus"/>
+</RelativeLayout>

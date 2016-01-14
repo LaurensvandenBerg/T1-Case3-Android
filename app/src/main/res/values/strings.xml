@@ -3,6 +3,13 @@
     <string name="action_settings">Settings</string>
     <string name="packButton">Bestelling inpakken</string>
     <string name="title_activity_pack_order">PackOrder</string>
+    <string name="shipping">SHIPPING</string>
+    <string name="giftingpackage">PACKAGE</string>
+    <string name="orderstatus">Orderstatus:</string>
+    <string name="orderid">Order id:</string>
 
     <string name="hello_world">Hello world!</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
