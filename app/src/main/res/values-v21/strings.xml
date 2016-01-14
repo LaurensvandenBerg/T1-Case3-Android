@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="action_menu_refresh">REFRESH</string>
+    <string name="search_title">Search</string>
+    <string name="search_hint">ORDER ID</string>
+    <string name="action_search">Search</string>
+</resources>

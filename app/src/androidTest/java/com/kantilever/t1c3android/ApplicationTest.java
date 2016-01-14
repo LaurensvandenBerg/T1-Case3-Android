@@ -1,4 +1,4 @@
-package com.pizza.tom.t1c3android;
+package com.kantilever.t1c3android;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;
