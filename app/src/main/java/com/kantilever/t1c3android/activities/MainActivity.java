@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
-        searchView.requestFocus();
+        searchView.onActionViewExpanded();
         return true;
     }
 
