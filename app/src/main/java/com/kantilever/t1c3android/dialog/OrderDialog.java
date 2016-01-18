@@ -5,9 +5,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
-import android.widget.Button;
 import android.widget.TextView;
 
+import com.beardedhen.androidbootstrap.BootstrapButton;
 import com.google.gson.JsonElement;
 import com.kantilever.t1c3android.R;
 import com.kantilever.t1c3android.activities.MainActivity;
@@ -35,11 +35,11 @@ public class OrderDialog extends Dialog {
     /**
      * The Shipping.
      */
-    Button shipping;
+    BootstrapButton shipping;
     /**
      * The Giftingpackage.
      */
-    Button giftingpackage;
+    BootstrapButton giftingpackage;
     /**
      * The Customer order.
      */
@@ -70,8 +70,8 @@ public class OrderDialog extends Dialog {
         orderStatusTextView = (TextView) findViewById(R.id.order_status_dialog);
         orderIdTextView.setText("Orderid: " + customerOrder.getOrderId());
         orderStatusTextView.setText("Orderstatus: " + customerOrder.getOrderStatus());
-        shipping = (Button) findViewById(R.id.shipping);
-        giftingpackage = (Button) findViewById(R.id.giftingpackage);
+        shipping = (BootstrapButton) findViewById(R.id.shipping);
+        giftingpackage = (BootstrapButton) findViewById(R.id.giftingpackage);
         setButtons();
     }
 
