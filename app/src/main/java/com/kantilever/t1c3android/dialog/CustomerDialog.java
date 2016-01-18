@@ -1,0 +1,40 @@
+package com.kantilever.t1c3android.dialog;
+
+import android.content.Context;
+import android.os.Bundle;
+import android.view.Window;
+
+import com.kantilever.t1c3android.R;
+import com.kantilever.t1c3android.domain.Customer;
+
+/**
+ * Created by Tom on 18-1-2016.
+ */
+public class CustomerDialog extends AppDialog {
+    /**
+     * The Customer.
+     */
+    Customer customer;
+
+    /**
+     * Instantiates a new Customer dialog.
+     *
+     * @param customer the customer
+     */
+    public CustomerDialog(final Customer customer, final Context context) {
+        super(context);
+        this.customer = customer;
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        setContentView(R.layout.customer_dialog);
+        setTextView(R.id.customer_id_dialog, "Customer id: " + customer.getId());
+        setTextView(R.id.customer_name_dialog, "Name: " + customer.toString());
+        setTextView(R.id.customer_initials_dialog, "Initials: " + customer.getInitials());
+        setTextView(R.id.customer_address_dialog, "Address: " + customer.getAddress().toString());
+        setTextView(R.id.customer_zipcode_dialog, "Zipcode: " + customer.getAddress().getZipcode());
+    }
+}

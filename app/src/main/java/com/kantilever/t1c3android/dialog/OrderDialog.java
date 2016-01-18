@@ -1,16 +1,14 @@
 package com.kantilever.t1c3android.dialog;
 
-import android.app.Dialog;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
-import android.widget.TextView;
 
 import com.beardedhen.androidbootstrap.BootstrapButton;
 import com.google.gson.JsonElement;
 import com.kantilever.t1c3android.R;
-import com.kantilever.t1c3android.activities.MainActivity;
+import com.kantilever.t1c3android.activities.AbsActivity;
 import com.kantilever.t1c3android.domain.OrderState;
 import com.kantilever.t1c3android.domain.rest.CustomerOrder;
 import com.kantilever.t1c3android.rest.services.OrderService;
@@ -22,16 +20,7 @@ import retrofit.client.Response;
 /**
  * The type Order dialog.
  */
-public class OrderDialog extends Dialog {
-
-    /**
-     * The Order id text view.
-     */
-    TextView orderIdTextView;
-    /**
-     * The Order status text view.
-     */
-    TextView orderStatusTextView;
+public class OrderDialog extends AppDialog {
     /**
      * The Shipping.
      */
@@ -47,7 +36,7 @@ public class OrderDialog extends Dialog {
     /**
      * The Activity.
      */
-    MainActivity activity;
+    AbsActivity activity;
 
     /**
      * Instantiates a new Order dialog.
@@ -55,7 +44,7 @@ public class OrderDialog extends Dialog {
      * @param customerOrder the customer order
      * @param activity      the activity
      */
-    public OrderDialog(final CustomerOrder customerOrder, final MainActivity activity) {
+    public OrderDialog(final CustomerOrder customerOrder, final AbsActivity activity) {
         super(activity);
         this.customerOrder = customerOrder;
         this.activity = activity;
@@ -66,10 +55,8 @@ public class OrderDialog extends Dialog {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.order_item_dialog);
-        orderIdTextView = (TextView) findViewById(R.id.order_id_dialog);
-        orderStatusTextView = (TextView) findViewById(R.id.order_status_dialog);
-        orderIdTextView.setText("Orderid: " + customerOrder.getOrderId());
-        orderStatusTextView.setText("Orderstatus: " + customerOrder.getOrderStatus());
+        setTextView(R.id.order_id_dialog, "Orderid: " + customerOrder.getOrderId());
+        setTextView(R.id.order_status_dialog, "Orderstatus: " + customerOrder.getOrderStatus());
         shipping = (BootstrapButton) findViewById(R.id.shipping);
         giftingpackage = (BootstrapButton) findViewById(R.id.giftingpackage);
         setButtons();

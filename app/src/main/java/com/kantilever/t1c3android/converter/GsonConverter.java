@@ -4,8 +4,10 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
+import com.kantilever.t1c3android.converter.deserializers.AddressDeserializer;
 import com.kantilever.t1c3android.converter.deserializers.CustomerDeserializer;
 import com.kantilever.t1c3android.converter.deserializers.OrderDeserializer;
+import com.kantilever.t1c3android.domain.Address;
 import com.kantilever.t1c3android.domain.Customer;
 import com.kantilever.t1c3android.domain.rest.CustomerOrder;
 
@@ -19,6 +21,7 @@ public class GsonConverter {
 
     private static Gson gson = new GsonBuilder().registerTypeAdapter(Customer.class, new CustomerDeserializer())
                                                 .registerTypeAdapter(CustomerOrder.class, new OrderDeserializer())
+                                                .registerTypeAdapter(Address.class, new AddressDeserializer())
                                                 .setPrettyPrinting()
                                                 .create();
 
