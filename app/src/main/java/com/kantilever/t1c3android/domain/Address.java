@@ -123,4 +123,9 @@ public class Address extends PersistenceEntity {
     public void setCustomersDeliveryAddress(List<Customer> customersDeliveryAddress) {
         this.customersDeliveryAddress = customersDeliveryAddress;
     }
+
+    @Override
+    public String toString() {
+        return streetname + " " + number + ", " + city;
+    }
 }

@@ -16,4 +16,9 @@
     <string name="search_title">Search</string>
     <string name="search_hint">ORDER ID</string>
     <string name="action_search">Search</string>
+    <string name="title_activity_customer">CustomerActivity</string>
+    <string name="action_menu_customers">CUSTOMERS</string>
+    <string name="action_menu_orders">ORDERS</string>
+    <string name="customername">Customer name:</string>
+    <string name="customerid">Customer id:</string>
 </resources>

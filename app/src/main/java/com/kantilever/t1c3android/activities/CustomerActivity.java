@@ -14,10 +14,11 @@ import android.widget.TextView;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.kantilever.t1c3android.R;
-import com.kantilever.t1c3android.adapters.OrderAdapter;
+import com.kantilever.t1c3android.adapters.CustomerAdapter;
 import com.kantilever.t1c3android.converter.GsonConverter;
-import com.kantilever.t1c3android.dialog.OrderDialog;
-import com.kantilever.t1c3android.domain.rest.CustomerOrder;
+import com.kantilever.t1c3android.dialog.CustomerDialog;
+import com.kantilever.t1c3android.domain.Customer;
+import com.kantilever.t1c3android.rest.services.CustomerService;
 import com.kantilever.t1c3android.rest.services.OrderService;
 
 import java.util.ArrayList;
@@ -27,29 +28,25 @@ import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 
-/**
- * The type Main activity.
- */
-public class MainActivity extends AbsActivity {
+public class CustomerActivity extends AbsActivity {
 
-    private ListView orderList;
-    private List<CustomerOrder> customerOrders = new ArrayList<>();
-    private List<CustomerOrder> filtered = new ArrayList<>();
+    private ListView customerList;
+    private List<Customer> customers = new ArrayList<>();
+    private List<Customer> filtered = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setGeneralContent(R.layout.activity_main, R.id.toolbar);
-        orderList = (ListView) findViewById(R.id.list_orders);
-        OrderService.get().getAll(getResult());
-        activity = this;
+        setGeneralContent(R.layout.activity_customer, R.id.toolbar);
+        customerList = (ListView) findViewById(R.id.list_customers);
+        CustomerService.get().getAll(getResult());
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
-        final MenuItem ordersMenuItem = menu.findItem(R.id.action_orders);
-        ordersMenuItem.setVisible(false);
+        final MenuItem customersMenuItem = menu.findItem(R.id.action_customers);
+        customersMenuItem.setVisible(false);
         return true;
     }
 
@@ -64,8 +61,8 @@ public class MainActivity extends AbsActivity {
             case R.id.action_refresh:
                 OrderService.get().getAll(getResult());
                 break;
-            case R.id.action_customers:
-                Intent intent = new Intent(this, CustomerActivity.class);
+            case R.id.action_orders:
+                Intent intent = new Intent(this, MainActivity.class);
                 startActivity(intent);
                 break;
         }
@@ -77,18 +74,18 @@ public class MainActivity extends AbsActivity {
      */
     @Override
     public void refresh() {
-        CustomerOrder[] orderArray = {};
-        orderArray = filtered.toArray(orderArray);
-        orderList.setAdapter(new OrderAdapter(this, orderArray));
-        orderList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        Customer[] customersArray = {};
+        customersArray = filtered.toArray(customersArray);
+        customerList.setAdapter(new CustomerAdapter(this, customersArray));
+        customerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position,
                                     long id) {
                 RelativeLayout rl = (RelativeLayout) view;
-                String item = ((TextView) rl.findViewById(R.id.order_item_row)).getText().toString();
-                for (CustomerOrder customerOrder : filtered)
-                    if (customerOrder.getOrderId().equals(item)) {
-                        OrderDialog dialog = new OrderDialog(customerOrder, activity);
+                String item = ((TextView) rl.findViewById(R.id.customer_item_row)).getText().toString();
+                for (Customer customer : filtered)
+                    if (customer.getId().equals(item)) {
+                        CustomerDialog dialog = new CustomerDialog(customer, view.getContext());
                         show(dialog);
                         break;
                     }
@@ -100,12 +97,15 @@ public class MainActivity extends AbsActivity {
     protected void search(String query) {
         filtered = new ArrayList<>();
         if (query.isEmpty() || query.equals(""))
-            filtered = customerOrders;
+            filtered = customers;
         else
-            for (CustomerOrder customerOrder : customerOrders)
-                if (customerOrder.getOrderId().startsWith(query)) {
-                    filtered.add(customerOrder);
+            for (Customer customer : customers) {
+                String firstName = customer.getFirstName().toLowerCase();
+                String lastName = customer.getLastName().toLowerCase();
+                if (firstName.contains(query) || lastName.contains(query)) {
+                    filtered.add(customer);
                 }
+            }
     }
 
     @Override
@@ -115,7 +115,7 @@ public class MainActivity extends AbsActivity {
             @Override
             public void success(JsonElement jsonElement, Response response) {
                 JsonArray jsonArray = jsonElement.getAsJsonObject().getAsJsonArray("content");
-                customerOrders = GsonConverter.convertArray(jsonArray, CustomerOrder.class);
+                customers = GsonConverter.convertArray(jsonArray, Customer.class);
                 search("");
                 refresh();
             }
