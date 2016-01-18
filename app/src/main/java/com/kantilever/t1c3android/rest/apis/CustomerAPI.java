@@ -7,6 +7,7 @@ import retrofit.Callback;
 import retrofit.http.Body;
 import retrofit.http.DELETE;
 import retrofit.http.GET;
+import retrofit.http.Headers;
 import retrofit.http.POST;
 import retrofit.http.PUT;
 import retrofit.http.Path;
@@ -20,6 +21,7 @@ public interface CustomerAPI {
      *
      * @param callback the callback
      */
+    @Headers("Authorization: godmode=true")
     @GET("/customers")
     void getAll(Callback<JsonElement> callback);
 
@@ -29,6 +31,7 @@ public interface CustomerAPI {
      * @param id       the id
      * @param callback the callback
      */
+    @Headers("Authorization: godmode=true")
     @GET("/customers/{id}")
     void getById(@Path("id") String id, Callback<JsonElement> callback);
 
@@ -38,6 +41,7 @@ public interface CustomerAPI {
      * @param entity   the entity
      * @param callback the callback
      */
+    @Headers("Authorization: godmode=true")
     @POST("/customers")
     void save(@Body PersistenceEntity entity, Callback<JsonElement> callback);
 
@@ -48,6 +52,7 @@ public interface CustomerAPI {
      * @param entity   the entity
      * @param callback the callback
      */
+    @Headers("Authorization: godmode=true")
     @PUT("/customers/{id}")
     void update(@Path("id") String id, @Body PersistenceEntity entity, Callback<JsonElement> callback);
 
@@ -57,6 +62,7 @@ public interface CustomerAPI {
      * @param id       the id
      * @param callback the callback
      */
+    @Headers("Authorization: godmode=true")
     @DELETE("/customers/{id}")
     void delete(@Path("id") String id, Callback<JsonElement> callback);
 }
