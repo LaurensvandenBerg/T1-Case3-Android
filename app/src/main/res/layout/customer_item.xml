@@ -5,26 +5,26 @@
     android:layout_gravity="center">
 
 
-    <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    <TextView
         android:id="@+id/customer_item_row_labelid"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/customerid" />
 
-    <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    <TextView
         android:id="@+id/customer_item_row"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toEndOf="@id/customer_item_row_labelid"/>
 
-    <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    <TextView
         android:id="@+id/customer_item_row_labelname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/customer_item_row_labelid"
         android:text="@string/customername" />
 
-    <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    <TextView
         android:id="@+id/customer_item_row_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
