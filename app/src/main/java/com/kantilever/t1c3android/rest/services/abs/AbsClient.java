@@ -17,7 +17,7 @@ public abstract class AbsClient {
     /**
      * The constant BASE_URL.
      */
-    protected static final String BASE_URL = "http://10.32.40.234:6789";
+    protected static final String BASE_URL = "http://YOUR_SERVER:6789";
 
     /**
      * The constant HttpClient
