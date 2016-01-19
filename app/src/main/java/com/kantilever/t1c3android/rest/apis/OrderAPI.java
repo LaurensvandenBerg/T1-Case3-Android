@@ -1,7 +1,7 @@
 package com.kantilever.t1c3android.rest.apis;
 
 import com.google.gson.JsonElement;
-import com.kantilever.t1c3android.domain.abs.PersistenceEntity;
+import com.kantilever.t1c3android.domain.rest.CustomerOrder;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -33,7 +33,7 @@ public interface OrderAPI {
      * @param entity   the entity
      */
     @POST("/customerorders")
-    Call<JsonElement> save(@Body PersistenceEntity entity);
+    Call<JsonElement> save(@Body CustomerOrder entity);
 
     /**
      * Update.
@@ -42,7 +42,7 @@ public interface OrderAPI {
      * @param entity   the entity
      */
     @PUT("/customerorders/{id}")
-    Call<JsonElement> update(@Path("id") String id, @Body PersistenceEntity entity);
+    Call<JsonElement> update(@Path("id") String id, @Body CustomerOrder entity);
 
     /**
      * Delete.
