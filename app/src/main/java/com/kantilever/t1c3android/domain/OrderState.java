@@ -7,7 +7,7 @@ public enum OrderState {
     /**
      * Running order state.
      */
-    RUNNING("Openstaand"),
+    RUNNING("Open"),
     /**
      * Packaged order state.
      */
@@ -15,7 +15,11 @@ public enum OrderState {
     /**
      * Shipped order state.
      */
-    SHIPPED("Verscheept");
+    SHIPPED("Verscheept"),
+    /**
+     * Cancelled order state.
+     */
+    CANCELLED("Geannuleerd");
 
     private String name;
 
