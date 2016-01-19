@@ -43,6 +43,7 @@ public class Product extends PersistenceEntity {
      * Instantiates a new Product.
      */
     public Product() {
+        //empty constructor
     }
 
     /**
@@ -99,41 +100,8 @@ public class Product extends PersistenceEntity {
         this.stock = stock;
     }
 
+    @Override
     public String toString() {
         return "com.kantilever.t1c3android.domain.Product(name=" + this.name + ", price=" + this.price + ", stock=" + this.stock + ")";
-    }
-
-    public boolean equals(Object o) {
-        if (o == this) return true;
-        if (!(o instanceof Product)) return false;
-        final Product other = (Product) o;
-        if (!other.canEqual((Object) this)) return false;
-        final Object this$name = this.getName();
-        final Object other$name = other.getName();
-        if (this$name == null ? other$name != null : !this$name.equals(other$name)) return false;
-        if (Double.compare(this.getPrice(), other.getPrice()) != 0) return false;
-        if (this.getStock() != other.getStock()) return false;
-        return true;
-    }
-
-    public int hashCode() {
-        final int PRIME = 59;
-        int result = 1;
-        final Object $name = this.getName();
-        result = result * PRIME + ($name == null ? 0 : $name.hashCode());
-        final long $price = Double.doubleToLongBits(this.getPrice());
-        result = result * PRIME + (int) ($price >>> 32 ^ $price);
-        result = result * PRIME + this.getStock();
-        return result;
-    }
-
-    /**
-     * Can equal boolean.
-     *
-     * @param other the other
-     * @return the boolean
-     */
-    protected boolean canEqual(Object other) {
-        return other instanceof Product;
     }
 }

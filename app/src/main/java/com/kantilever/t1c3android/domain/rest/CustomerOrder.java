@@ -44,6 +44,7 @@ public class CustomerOrder extends PersistenceEntity {
      * Instantiates a new Customer order.
      */
     public CustomerOrder() {
+        //Empty constructor
     }
 
     /**
@@ -163,65 +164,9 @@ public class CustomerOrder extends PersistenceEntity {
         this.products = products;
     }
 
+    @Override
     public String toString() {
         return "com.kantilever.t1c3android.domain.rest.CustomerOrder(orderId=" + this.orderId + ", customerId=" + this.customerId + ", orderStatus=" + this.orderStatus + ", deliveryStatus=" + this.deliveryStatus + ", totalPrice=" + this.totalPrice + ", products=" + this.products + ")";
-    }
-
-    public boolean equals(Object o) {
-        if (o == this) return true;
-        if (!(o instanceof CustomerOrder)) return false;
-        final CustomerOrder other = (CustomerOrder) o;
-        if (!other.canEqual((Object) this)) return false;
-        final Object this$orderId = this.getOrderId();
-        final Object other$orderId = other.getOrderId();
-        if (this$orderId == null ? other$orderId != null : !this$orderId.equals(other$orderId))
-            return false;
-        final Object this$customerId = this.getCustomerId();
-        final Object other$customerId = other.getCustomerId();
-        if (this$customerId == null ? other$customerId != null : !this$customerId.equals(other$customerId))
-            return false;
-        final Object this$orderStatus = this.getOrderStatus();
-        final Object other$orderStatus = other.getOrderStatus();
-        if (this$orderStatus == null ? other$orderStatus != null : !this$orderStatus.equals(other$orderStatus))
-            return false;
-        final Object this$deliveryStatus = this.getDeliveryStatus();
-        final Object other$deliveryStatus = other.getDeliveryStatus();
-        if (this$deliveryStatus == null ? other$deliveryStatus != null : !this$deliveryStatus.equals(other$deliveryStatus))
-            return false;
-        if (Double.compare(this.getTotalPrice(), other.getTotalPrice()) != 0) return false;
-        final Object this$products = this.getProducts();
-        final Object other$products = other.getProducts();
-        if (this$products == null ? other$products != null : !this$products.equals(other$products))
-            return false;
-        return true;
-    }
-
-    public int hashCode() {
-        final int PRIME = 59;
-        int result = 1;
-        final Object $orderId = this.getOrderId();
-        result = result * PRIME + ($orderId == null ? 0 : $orderId.hashCode());
-        final Object $customerId = this.getCustomerId();
-        result = result * PRIME + ($customerId == null ? 0 : $customerId.hashCode());
-        final Object $orderStatus = this.getOrderStatus();
-        result = result * PRIME + ($orderStatus == null ? 0 : $orderStatus.hashCode());
-        final Object $deliveryStatus = this.getDeliveryStatus();
-        result = result * PRIME + ($deliveryStatus == null ? 0 : $deliveryStatus.hashCode());
-        final long $totalPrice = Double.doubleToLongBits(this.getTotalPrice());
-        result = result * PRIME + (int) ($totalPrice >>> 32 ^ $totalPrice);
-        final Object $products = this.getProducts();
-        result = result * PRIME + ($products == null ? 0 : $products.hashCode());
-        return result;
-    }
-
-    /**
-     * Can equal boolean.
-     *
-     * @param other the other
-     * @return the boolean
-     */
-    protected boolean canEqual(Object other) {
-        return other instanceof CustomerOrder;
     }
 
     /**
@@ -316,6 +261,7 @@ public class CustomerOrder extends PersistenceEntity {
             return new CustomerOrder(orderId, customerId, orderStatus, deliveryStatus, totalPrice, products);
         }
 
+        @Override
         public String toString() {
             return "com.kantilever.t1c3android.domain.rest.CustomerOrder.CustomerOrderBuilder(orderId=" + this.orderId + ", customerId=" + this.customerId + ", orderStatus=" + this.orderStatus + ", deliveryStatus=" + this.deliveryStatus + ", totalPrice=" + this.totalPrice + ", products=" + this.products + ")";
         }

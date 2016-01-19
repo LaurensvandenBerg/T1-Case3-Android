@@ -63,6 +63,8 @@ public class CustomerActivity extends AbsActivity {
                 Intent intent = new Intent(this, MainActivity.class);
                 startActivity(intent);
                 break;
+            default:
+                break;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -94,7 +96,7 @@ public class CustomerActivity extends AbsActivity {
     @Override
     protected void search(String query) {
         filtered = new ArrayList<>();
-        if (query.isEmpty() || query.equals(""))
+        if ("".equals(query) || query.isEmpty())
             filtered = customers;
         else
             for (Customer customer : customers) {

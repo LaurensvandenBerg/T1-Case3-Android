@@ -7,7 +7,7 @@ import com.kantilever.t1c3android.rest.services.abs.AbsClient;
  * The type Customer service.
  */
 public class CustomerService extends AbsClient {
-    private static CustomerAPI REST_CLIENT;
+    private static CustomerAPI restClient;
 
     static {
         setupRestClient();
@@ -24,11 +24,11 @@ public class CustomerService extends AbsClient {
      */
     public static CustomerAPI get() {
 
-        return REST_CLIENT;
+        return restClient;
     }
 
     protected static void setupRestClient() {
         AbsClient.setupRestClient();
-        REST_CLIENT = REST_ADAPTER.create(CustomerAPI.class);
+        restClient = restAdapter.create(CustomerAPI.class);
     }
 }

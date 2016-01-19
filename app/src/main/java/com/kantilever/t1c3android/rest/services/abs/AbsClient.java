@@ -24,9 +24,9 @@ public abstract class AbsClient {
      */
     protected static OkHttpClient client;
     /**
-     * The constant REST_ADAPTER.
+     * The constant rest.
      */
-    protected static Retrofit REST_ADAPTER;
+    protected static Retrofit restAdapter;
 
     protected AbsClient(){
     }
@@ -43,7 +43,7 @@ public abstract class AbsClient {
             }
         }).build();
 
-        REST_ADAPTER = new Retrofit.Builder()
+        restAdapter = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(client)
