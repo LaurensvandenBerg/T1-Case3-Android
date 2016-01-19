@@ -9,16 +9,15 @@ import android.view.WindowManager;
 import android.widget.SearchView;
 
 import com.beardedhen.androidbootstrap.TypefaceProvider;
-import com.google.gson.JsonElement;
 import com.kantilever.t1c3android.R;
 import com.kantilever.t1c3android.dialog.AppDialog;
 
-import retrofit.Callback;
+import retrofit2.Callback;
 
 /**
  * Created by Tom on 18-1-2016.
  */
-public abstract class AbsActivity extends AppCompatActivity {
+public abstract class AbsActivity<T> extends AppCompatActivity {
 
     protected AbsActivity activity;
 
@@ -72,5 +71,5 @@ public abstract class AbsActivity extends AppCompatActivity {
 
     protected abstract void search(String query);
 
-    protected abstract Callback<JsonElement> getResult();
+    protected abstract Callback<T> getResult();
 }

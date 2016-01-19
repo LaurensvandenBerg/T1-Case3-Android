@@ -13,9 +13,8 @@ import com.kantilever.t1c3android.domain.OrderState;
 import com.kantilever.t1c3android.domain.rest.CustomerOrder;
 import com.kantilever.t1c3android.rest.services.OrderService;
 
-import retrofit.Callback;
-import retrofit.RetrofitError;
-import retrofit.client.Response;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * The type Order dialog.
@@ -64,7 +63,7 @@ public class OrderDialog extends AppDialog {
 
     private void setButtons() {
         OrderState state = OrderState.findOrderState(customerOrder.getOrderStatus());
-        switch(state) {
+        switch (state) {
             case RUNNING:
                 giftingpackage.setOnClickListener(getOnClickListener(OrderState.PACKAGED));
                 shipping.setVisibility(View.GONE);
@@ -82,7 +81,8 @@ public class OrderDialog extends AppDialog {
 
     private void update() {
         activity.refresh();
-        OrderService.get().update(customerOrder.getId(), customerOrder, getResult());
+        OrderService.get().update(customerOrder.getId(), customerOrder)
+                          .enqueue(getResult());
         dismiss();
     }
 
@@ -99,13 +99,13 @@ public class OrderDialog extends AppDialog {
     private Callback<JsonElement> getResult() {
         return new Callback<JsonElement>() {
             @Override
-            public void success(JsonElement jsonElement, Response response) {
+            public void onResponse(Response<JsonElement> response) {
                 Log.i("SUCCESS", "JEEJ");
             }
 
             @Override
-            public void failure(RetrofitError error) {
-                Log.i("ERROR", error.getMessage());
+            public void onFailure(Throwable t) {
+                Log.i("ERROR", t.getMessage());
             }
         };
     }

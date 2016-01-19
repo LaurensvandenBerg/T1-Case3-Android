@@ -2,10 +2,6 @@ package com.kantilever.t1c3android.rest.services;
 
 import com.kantilever.t1c3android.rest.apis.OrderAPI;
 import com.kantilever.t1c3android.rest.services.abs.AbsClient;
-import com.squareup.okhttp.OkHttpClient;
-
-import retrofit.RestAdapter;
-import retrofit.client.OkClient;
 
 /**
  * The type Order service.
@@ -17,7 +13,8 @@ public class OrderService extends AbsClient {
         setupRestClient();
     }
 
-    private OrderService() {}
+    private OrderService() {
+    }
 
     /**
      * Get order api.
@@ -28,13 +25,8 @@ public class OrderService extends AbsClient {
         return REST_CLIENT;
     }
 
-    private static void setupRestClient() {
-        RestAdapter.Builder builder = new RestAdapter.Builder()
-                .setEndpoint(BASE_URL)
-                .setClient(new OkClient(new OkHttpClient()))
-                .setLogLevel(RestAdapter.LogLevel.FULL);
-
-        RestAdapter restAdapter = builder.build();
-        REST_CLIENT = restAdapter.create(OrderAPI.class);
+    protected static void setupRestClient() {
+        AbsClient.setupRestClient();
+        REST_CLIENT = REST_ADAPTER.create(OrderAPI.class);
     }
 }
