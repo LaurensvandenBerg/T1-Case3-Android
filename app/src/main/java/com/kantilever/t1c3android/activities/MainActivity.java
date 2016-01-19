@@ -23,9 +23,8 @@ import com.kantilever.t1c3android.rest.services.OrderService;
 import java.util.ArrayList;
 import java.util.List;
 
-import retrofit.Callback;
-import retrofit.RetrofitError;
-import retrofit.client.Response;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * The type Main activity.
@@ -41,7 +40,7 @@ public class MainActivity extends AbsActivity {
         super.onCreate(savedInstanceState);
         setGeneralContent(R.layout.activity_main, R.id.toolbar);
         orderList = (ListView) findViewById(R.id.list_orders);
-        OrderService.get().getAll(getResult());
+        OrderService.get().getAll().enqueue(getResult());
         activity = this;
     }
 
@@ -62,7 +61,7 @@ public class MainActivity extends AbsActivity {
 
         switch (id) {
             case R.id.action_refresh:
-                OrderService.get().getAll(getResult());
+                OrderService.get().getAll().enqueue(getResult());
                 break;
             case R.id.action_customers:
                 Intent intent = new Intent(this, CustomerActivity.class);
@@ -113,7 +112,8 @@ public class MainActivity extends AbsActivity {
         return new Callback<JsonElement>() {
 
             @Override
-            public void success(JsonElement jsonElement, Response response) {
+            public void onResponse(Response<JsonElement> response) {
+                JsonElement jsonElement = response.body();
                 JsonArray jsonArray = jsonElement.getAsJsonObject().getAsJsonArray("content");
                 customerOrders = GsonConverter.convertArray(jsonArray, CustomerOrder.class);
                 search("");
@@ -121,9 +121,10 @@ public class MainActivity extends AbsActivity {
             }
 
             @Override
-            public void failure(RetrofitError error) {
-                Log.i("ERROR", error.getMessage());
+            public void onFailure(Throwable t) {
+                Log.i("ERROR", t.getMessage());
             }
+
         };
     }
 }

@@ -19,14 +19,12 @@ import com.kantilever.t1c3android.converter.GsonConverter;
 import com.kantilever.t1c3android.dialog.CustomerDialog;
 import com.kantilever.t1c3android.domain.Customer;
 import com.kantilever.t1c3android.rest.services.CustomerService;
-import com.kantilever.t1c3android.rest.services.OrderService;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import retrofit.Callback;
-import retrofit.RetrofitError;
-import retrofit.client.Response;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class CustomerActivity extends AbsActivity {
 
@@ -39,7 +37,7 @@ public class CustomerActivity extends AbsActivity {
         super.onCreate(savedInstanceState);
         setGeneralContent(R.layout.activity_customer, R.id.toolbar);
         customerList = (ListView) findViewById(R.id.list_customers);
-        CustomerService.get().getAll(getResult());
+        CustomerService.get().getAll().enqueue(getResult());
     }
 
     @Override
@@ -59,7 +57,7 @@ public class CustomerActivity extends AbsActivity {
 
         switch (id) {
             case R.id.action_refresh:
-                OrderService.get().getAll(getResult());
+                CustomerService.get().getAll().enqueue(getResult());
                 break;
             case R.id.action_orders:
                 Intent intent = new Intent(this, MainActivity.class);
@@ -113,7 +111,8 @@ public class CustomerActivity extends AbsActivity {
         return new Callback<JsonElement>() {
 
             @Override
-            public void success(JsonElement jsonElement, Response response) {
+            public void onResponse(Response<JsonElement> response) {
+                JsonElement jsonElement = response.body();
                 JsonArray jsonArray = jsonElement.getAsJsonObject().getAsJsonArray("content");
                 customers = GsonConverter.convertArray(jsonArray, Customer.class);
                 search("");
@@ -121,8 +120,8 @@ public class CustomerActivity extends AbsActivity {
             }
 
             @Override
-            public void failure(RetrofitError error) {
-                Log.i("ERROR", error.getMessage());
+            public void onFailure(Throwable t) {
+                Log.i("ERROR", t.getMessage());
             }
         };
     }
