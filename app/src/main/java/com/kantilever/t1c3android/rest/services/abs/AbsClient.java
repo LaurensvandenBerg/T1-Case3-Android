@@ -18,7 +18,6 @@ public abstract class AbsClient {
      * The constant BASE_URL.
      */
     protected static final String BASE_URL = "http://YOUR_SERVER:6789";
-
     /**
      * The constant HttpClient.
      */
@@ -28,9 +27,20 @@ public abstract class AbsClient {
      */
     protected static Retrofit restAdapter;
 
+    /**
+     * The constant JSON_VERSION.
+     */
+    public static final String JSON_VERSION = "6.0";
+
+    /**
+     * Instantiates a new Abs client.
+     */
     protected AbsClient() {
     }
 
+    /**
+     * Sets rest client.
+     */
     protected static void setupRestClient() {
         client = new OkHttpClient.Builder().addInterceptor(new Interceptor() {
             @Override
@@ -48,5 +58,14 @@ public abstract class AbsClient {
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(client)
                 .build();
+    }
+
+    /**
+     * Gets json version.
+     *
+     * @return the json version
+     */
+    public static String getJsonVersion() {
+        return JSON_VERSION;
     }
 }

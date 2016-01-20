@@ -10,9 +10,11 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import com.kantilever.t1c3android.R;
 import com.kantilever.t1c3android.adapters.OrderAdapter;
 import com.kantilever.t1c3android.converter.GsonConverter;
@@ -110,17 +112,23 @@ public class MainActivity extends AbsActivity {
                 }
     }
 
+    @SuppressWarnings("squid:S1188")
     @Override
     protected Callback<JsonElement> getResult() {
         return new Callback<JsonElement>() {
 
             @Override
             public void onResponse(Response<JsonElement> response) {
-                JsonElement jsonElement = response.body();
-                JsonArray jsonArray = jsonElement.getAsJsonObject().getAsJsonArray("content");
-                customerOrders = GsonConverter.convertArray(jsonArray, CustomerOrder.class);
-                search("");
-                refresh();
+                JsonObject jsonObject = response.body().getAsJsonObject();
+                String jsonVersion = jsonObject.get("jsonversion").getAsString();
+                if (OrderService.getJsonVersion().equals(jsonVersion)) {
+                    JsonArray jsonArray = jsonObject.getAsJsonArray("content");
+                    customerOrders = GsonConverter.convertArray(jsonArray, CustomerOrder.class);
+                    search("");
+                    refresh();
+                } else {
+                    Toast.makeText(MainActivity.this, "Please update your app", Toast.LENGTH_LONG).show();
+                }
             }
 
             @Override
