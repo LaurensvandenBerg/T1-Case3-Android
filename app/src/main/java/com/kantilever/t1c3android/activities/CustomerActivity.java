@@ -10,15 +10,18 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import com.kantilever.t1c3android.R;
 import com.kantilever.t1c3android.adapters.CustomerAdapter;
 import com.kantilever.t1c3android.converter.GsonConverter;
 import com.kantilever.t1c3android.dialog.CustomerDialog;
 import com.kantilever.t1c3android.domain.Customer;
 import com.kantilever.t1c3android.rest.services.CustomerService;
+import com.kantilever.t1c3android.rest.services.OrderService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -112,17 +115,24 @@ public class CustomerActivity extends AbsActivity {
             }
     }
 
+    @SuppressWarnings("squid:S1188")
     @Override
     protected Callback<JsonElement> getResult() {
         return new Callback<JsonElement>() {
 
             @Override
             public void onResponse(Response<JsonElement> response) {
-                JsonElement jsonElement = response.body();
-                JsonArray jsonArray = jsonElement.getAsJsonObject().getAsJsonArray("content");
-                customers = GsonConverter.convertArray(jsonArray, Customer.class);
-                search("");
-                refresh();
+                JsonObject jsonObject = response.body().getAsJsonObject();
+                String jsonVersion = jsonObject.get("jsonversion").getAsString();
+                if (OrderService.getJsonVersion().equals(jsonVersion)) {
+                    JsonElement jsonElement = response.body();
+                    JsonArray jsonArray = jsonElement.getAsJsonObject().getAsJsonArray("content");
+                    customers = GsonConverter.convertArray(jsonArray, Customer.class);
+                    search("");
+                    refresh();
+                } else {
+                    Toast.makeText(CustomerActivity.this, "Please update your app", Toast.LENGTH_LONG).show();
+                }
             }
 
             @Override

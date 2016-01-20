@@ -100,7 +100,7 @@ public class OrderDialog extends AppDialog {
         return new Callback<JsonElement>() {
             @Override
             public void onResponse(Response<JsonElement> response) {
-                Log.i("SUCCESS", "JEEJ");
+                Log.i("SUCCESS", "SUCCES UPDATED");
             }
 
             @Override
