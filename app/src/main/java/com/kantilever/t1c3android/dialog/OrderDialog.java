@@ -23,19 +23,19 @@ public class OrderDialog extends AppDialog {
     /**
      * The Shipping.
      */
-    BootstrapButton shipping;
+    private BootstrapButton shipping;
     /**
      * The Giftingpackage.
      */
-    BootstrapButton giftingpackage;
+    private BootstrapButton giftingpackage;
     /**
      * The Customer order.
      */
-    CustomerOrder customerOrder;
+    private CustomerOrder customerOrder;
     /**
      * The Activity.
      */
-    AbsActivity activity;
+    private AbsActivity activity;
 
     /**
      * Instantiates a new Order dialog.

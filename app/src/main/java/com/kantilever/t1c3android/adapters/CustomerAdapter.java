@@ -8,6 +8,9 @@ import android.widget.TextView;
 import com.kantilever.t1c3android.R;
 import com.kantilever.t1c3android.domain.Customer;
 
+/**
+ * The type Customer adapter.
+ */
 public class CustomerAdapter extends AbsAdapter<Customer> {
 
     /**

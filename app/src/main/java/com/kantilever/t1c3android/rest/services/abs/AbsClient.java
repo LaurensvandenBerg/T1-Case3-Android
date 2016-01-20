@@ -20,7 +20,7 @@ public abstract class AbsClient {
     protected static final String BASE_URL = "http://YOUR_SERVER:6789";
 
     /**
-     * The constant HttpClient
+     * The constant HttpClient.
      */
     protected static OkHttpClient client;
     /**
@@ -28,7 +28,7 @@ public abstract class AbsClient {
      */
     protected static Retrofit restAdapter;
 
-    protected AbsClient(){
+    protected AbsClient() {
     }
 
     protected static void setupRestClient() {

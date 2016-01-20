@@ -31,7 +31,9 @@ public class CustomerOrder extends PersistenceEntity {
      * @param totalPrice     the total price
      * @param products       the products
      */
-    public CustomerOrder(String orderId, String customerId, String orderStatus, String deliveryStatus, double totalPrice, List<CustomerProduct> products) {
+    public CustomerOrder(String orderId, String customerId, String orderStatus,
+                         String deliveryStatus, double totalPrice,
+                         List<CustomerProduct> products) {
         this.orderId = orderId;
         this.customerId = customerId;
         this.orderStatus = orderStatus;
@@ -166,7 +168,10 @@ public class CustomerOrder extends PersistenceEntity {
 
     @Override
     public String toString() {
-        return "com.kantilever.t1c3android.domain.rest.CustomerOrder(orderId=" + this.orderId + ", customerId=" + this.customerId + ", orderStatus=" + this.orderStatus + ", deliveryStatus=" + this.deliveryStatus + ", totalPrice=" + this.totalPrice + ", products=" + this.products + ")";
+        return "com.kantilever.t1c3android.domain.rest.CustomerOrder(orderId=" + this.orderId
+               + ", customerId=" + this.customerId + ", orderStatus=" + this.orderStatus
+               + ", deliveryStatus=" + this.deliveryStatus + ", totalPrice=" + this.totalPrice
+               + ", products=" + this.products + ")";
     }
 
     /**
@@ -263,7 +268,10 @@ public class CustomerOrder extends PersistenceEntity {
 
         @Override
         public String toString() {
-            return "com.kantilever.t1c3android.domain.rest.CustomerOrder.CustomerOrderBuilder(orderId=" + this.orderId + ", customerId=" + this.customerId + ", orderStatus=" + this.orderStatus + ", deliveryStatus=" + this.deliveryStatus + ", totalPrice=" + this.totalPrice + ", products=" + this.products + ")";
+            return "com.kantilever.t1c3android.domain.rest.CustomerOrder.CustomerOrderBuilder(orderId=" + this.orderId
+                   + ", customerId=" + this.customerId + ", orderStatus=" + this.orderStatus
+                   + ", deliveryStatus=" + this.deliveryStatus + ", totalPrice=" + this.totalPrice + ", products=" + this.products
+                   + ")";
         }
     }
 }

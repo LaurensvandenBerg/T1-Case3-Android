@@ -125,7 +125,7 @@ public class Customer extends PersistenceEntity {
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return firstName + " " + lastName;
     }
 }

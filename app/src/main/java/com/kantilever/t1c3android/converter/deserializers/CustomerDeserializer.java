@@ -12,7 +12,7 @@ import com.kantilever.t1c3android.domain.Customer;
 import java.lang.reflect.Type;
 
 /**
- * Customer Gson deserializer
+ * The type Customer deserializer.
  */
 public class CustomerDeserializer implements JsonDeserializer<Customer> {
     @Override

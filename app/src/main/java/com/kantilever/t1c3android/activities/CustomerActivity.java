@@ -26,6 +26,10 @@ import java.util.List;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+/**
+ * The type Customer activity.
+ */
+@SuppressWarnings("squid:IndentationCheck")
 public class CustomerActivity extends AbsActivity {
 
     private ListView customerList;
@@ -100,7 +104,7 @@ public class CustomerActivity extends AbsActivity {
             filtered = customers;
         else
             for (Customer customer : customers) {
-                String firstName = customer.getFirstName().toLowerCase();
+             String firstName = customer.getFirstName().toLowerCase();
                 String lastName = customer.getLastName().toLowerCase();
                 if (firstName.contains(query) || lastName.contains(query)) {
                     filtered.add(customer);

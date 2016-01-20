@@ -16,41 +16,46 @@ import retrofit2.http.Path;
  */
 public interface CustomerAPI {
     /**
-     * Gets all.
+     * Gets all Customers.
      *
+     * @return All Customers
      */
     @GET("/customers")
     Call<JsonElement> getAll();
 
     /**
-     * Gets by id.
+     * Gets Customer by id.
      *
-     * @param id       the id
+     * @param id the id Customer
+     * @return the Customer by id
      */
     @GET("/customers/{id}")
     Call<JsonElement> getById(@Path("id") String id);
 
     /**
-     * Save.
+     * Save Customer call.
      *
-     * @param entity   the entity
+     * @param customer the Customer
+     * @return the call
      */
     @POST("/customers")
-    Call<JsonElement> save(@Body Customer entity);
+    Call<JsonElement> save(@Body Customer customer);
 
     /**
-     * Update.
+     * Update customer call.
      *
-     * @param id       the id
-     * @param entity   the entity
+     * @param id     the id
+     * @param customer the customer
+     * @return the call
      */
     @PUT("/customers/{id}")
-    Call<JsonElement> update(@Path("id") String id, @Body Customer entity);
+    Call<JsonElement> update(@Path("id") String id, @Body Customer customer);
 
     /**
-     * Delete.
+     * Delete call.
      *
-     * @param id       the id
+     * @param id the customer id
+     * @return the customer call
      */
     @DELETE("/customers/{id}")
     Call<JsonElement> delete(@Path("id") String id);

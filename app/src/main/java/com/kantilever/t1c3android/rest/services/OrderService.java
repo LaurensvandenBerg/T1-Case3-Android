@@ -6,7 +6,7 @@ import com.kantilever.t1c3android.rest.services.abs.AbsClient;
 /**
  * The type Order service.
  */
-public class OrderService extends AbsClient {
+public final class OrderService extends AbsClient {
     private static OrderAPI restClient;
 
     static {

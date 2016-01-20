@@ -8,18 +8,19 @@ import com.kantilever.t1c3android.R;
 import com.kantilever.t1c3android.domain.Customer;
 
 /**
- * Created by Tom on 18-1-2016.
+ * The type Customer dialog.
  */
 public class CustomerDialog extends AppDialog {
     /**
      * The Customer.
      */
-    Customer customer;
+    private Customer customer;
 
     /**
      * Instantiates a new Customer dialog.
      *
      * @param customer the customer
+     * @param context  the context
      */
     public CustomerDialog(final Customer customer, final Context context) {
         super(context);

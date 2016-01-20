@@ -16,38 +16,47 @@ import retrofit2.http.Path;
  */
 public interface OrderAPI {
 
+    /**
+     * Gets Orders all.
+     *
+     * @return the all
+     */
     @GET("/customerorders")
     Call<JsonElement> getAll();
 
     /**
-     * Gets by id.
+     * Gets Order by id.
      *
-     * @param id       the id
+     * @param id the id
+     * @return the Order by id
      */
     @GET("/customerorders/{id}")
     Call<JsonElement> getById(@Path("id") String id);
 
     /**
-     * Save.
+     * Save Order call.
      *
-     * @param entity   the entity
+     * @param order the Order
+     * @return the call
      */
     @POST("/customerorders")
-    Call<JsonElement> save(@Body CustomerOrder entity);
+    Call<JsonElement> save(@Body CustomerOrder order);
 
     /**
-     * Update.
+     * Update Order call.
      *
-     * @param id       the id
-     * @param entity   the entity
+     * @param id     the id
+     * @param order the Order
+     * @return the call
      */
     @PUT("/customerorders/{id}")
-    Call<JsonElement> update(@Path("id") String id, @Body CustomerOrder entity);
+    Call<JsonElement> update(@Path("id") String id, @Body CustomerOrder order);
 
     /**
-     * Delete.
+     * Delete Order call.
      *
-     * @param id       the id
+     * @param id the id
+     * @return the call
      */
     @DELETE("/customerorders/{id}")
     Call<JsonElement> delete(@Path("id") String id);

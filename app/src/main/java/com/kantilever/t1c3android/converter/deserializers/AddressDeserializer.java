@@ -10,7 +10,7 @@ import com.kantilever.t1c3android.domain.Address;
 import java.lang.reflect.Type;
 
 /**
- * Created by Tom on 18-1-2016.
+ * The type Address deserializer.
  */
 public class AddressDeserializer implements JsonDeserializer<Address> {
     @Override

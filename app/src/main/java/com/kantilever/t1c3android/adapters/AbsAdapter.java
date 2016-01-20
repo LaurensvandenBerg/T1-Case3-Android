@@ -7,7 +7,9 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
 /**
- * Created by Tom on 19-1-2016.
+ * The type Abs adapter.
+ *
+ * @param <T> the type parameter
  */
 public class AbsAdapter<T> extends BaseAdapter {
 
@@ -20,9 +22,18 @@ public class AbsAdapter<T> extends BaseAdapter {
      */
     protected T[] data;
 
+    /**
+     * The constant inflater.
+     */
     protected static LayoutInflater inflater = null;
 
-    public AbsAdapter(Context context, T[] data){
+    /**
+     * Instantiates a new Abs adapter.
+     *
+     * @param context the context
+     * @param data    the data
+     */
+    public AbsAdapter(Context context, T[] data) {
         this.context = context;
         this.data = data;
         inflater = (LayoutInflater) context

@@ -29,6 +29,7 @@ import retrofit2.Response;
 /**
  * The type Main activity.
  */
+@SuppressWarnings("squid:IndentationCheck")
 public class MainActivity extends AbsActivity {
 
     private ListView orderList;
@@ -100,7 +101,7 @@ public class MainActivity extends AbsActivity {
     @Override
     protected void search(String query) {
         filtered = new ArrayList<>();
-        if ("".equals(query)|| query.isEmpty())
+        if ("".equals(query) || query.isEmpty())
             filtered = customerOrders;
         else
             for (CustomerOrder customerOrder : customerOrders)

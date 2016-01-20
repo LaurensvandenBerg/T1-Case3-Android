@@ -102,6 +102,7 @@ public class Product extends PersistenceEntity {
 
     @Override
     public String toString() {
-        return "com.kantilever.t1c3android.domain.Product(name=" + this.name + ", price=" + this.price + ", stock=" + this.stock + ")";
+        return "com.kantilever.t1c3android.domain.Product(name="
+                + this.name + ", price=" + this.price + ", stock=" + this.stock + ")";
     }
 }

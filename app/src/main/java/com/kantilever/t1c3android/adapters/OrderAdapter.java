@@ -8,6 +8,9 @@ import android.widget.TextView;
 import com.kantilever.t1c3android.R;
 import com.kantilever.t1c3android.domain.rest.CustomerOrder;
 
+/**
+ * The type Order adapter.
+ */
 public class OrderAdapter extends AbsAdapter<CustomerOrder> {
 
     /**

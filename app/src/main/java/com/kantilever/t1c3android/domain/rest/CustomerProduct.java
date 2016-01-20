@@ -126,7 +126,8 @@ public class CustomerProduct extends PersistenceEntity {
 
     @Override
     public String toString() {
-        return "com.kantilever.t1c3android.domain.rest.CustomerProduct(name=" + this.name + ", amount=" + this.amount + ", price=" + this.price + ")";
+        return "com.kantilever.t1c3android.domain.rest.CustomerProduct(name=" + this.name
+               + ", amount=" + this.amount + ", price=" + this.price + ")";
     }
 
     /**
@@ -187,7 +188,8 @@ public class CustomerProduct extends PersistenceEntity {
 
         @Override
         public String toString() {
-            return "com.kantilever.t1c3android.domain.rest.CustomerProduct.CustomerProductBuilder(name=" + this.name + ", amount=" + this.amount + ", price=" + this.price + ")";
+            return "com.kantilever.t1c3android.domain.rest.CustomerProduct.CustomerProductBuilder(name="
+                   + this.name + ", amount=" + this.amount + ", price=" + this.price + ")";
         }
     }
 }

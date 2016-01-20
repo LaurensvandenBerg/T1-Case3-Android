@@ -15,13 +15,24 @@ import com.kantilever.t1c3android.dialog.AppDialog;
 import retrofit2.Callback;
 
 /**
- * Created by Tom on 18-1-2016.
+ * The type Abs activity.
+ *
+ * @param <T> the type parameter
  */
 public abstract class AbsActivity<T> extends AppCompatActivity {
 
+    /**
+     * The Activity.
+     */
     protected AbsActivity activity;
 
-    public void setGeneralContent(int viewId, int toolbarId){
+    /**
+     * Sets general content.
+     *
+     * @param viewId    the view id
+     * @param toolbarId the toolbar id
+     */
+    public void setGeneralContent(int viewId, int toolbarId) {
         TypefaceProvider.registerDefaultIconSets();
         setContentView(viewId);
         Toolbar toolbar = (Toolbar) findViewById(toolbarId);
@@ -58,7 +69,12 @@ public abstract class AbsActivity<T> extends AppCompatActivity {
         return true;
     }
 
-    protected void show(AppDialog dialog){
+    /**
+     * Show.
+     *
+     * @param dialog the dialog
+     */
+    protected void show(AppDialog dialog) {
         WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
         lp.copyFrom(dialog.getWindow().getAttributes());
         lp.width = WindowManager.LayoutParams.MATCH_PARENT;
@@ -67,9 +83,22 @@ public abstract class AbsActivity<T> extends AppCompatActivity {
         dialog.getWindow().setAttributes(lp);
     }
 
+    /**
+     * Refresh.
+     */
     public abstract void refresh();
 
+    /**
+     * Search.
+     *
+     * @param query the query
+     */
     protected abstract void search(String query);
 
+    /**
+     * Gets result.
+     *
+     * @return the result
+     */
     protected abstract Callback<T> getResult();
 }

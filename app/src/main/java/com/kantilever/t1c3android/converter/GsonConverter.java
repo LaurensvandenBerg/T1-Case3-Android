@@ -17,13 +17,13 @@ import java.util.List;
 /**
  * The type Gson converter.
  */
-public class GsonConverter {
+public final class GsonConverter {
 
     private static Gson gson = new GsonBuilder().registerTypeAdapter(Customer.class, new CustomerDeserializer())
-                                                .registerTypeAdapter(CustomerOrder.class, new OrderDeserializer())
-                                                .registerTypeAdapter(Address.class, new AddressDeserializer())
-                                                .setPrettyPrinting()
-                                                .create();
+            .registerTypeAdapter(CustomerOrder.class, new OrderDeserializer())
+            .registerTypeAdapter(Address.class, new AddressDeserializer())
+            .setPrettyPrinting()
+            .create();
 
     private GsonConverter() {
     }
@@ -50,7 +50,7 @@ public class GsonConverter {
      */
     public static <T> List<T> convertArray(JsonArray array, Class clazz) {
         List convertable = new ArrayList();
-        for(JsonElement element : array){
+        for (JsonElement element : array) {
             convertable.add(convert(element, clazz));
         }
         return convertable;
