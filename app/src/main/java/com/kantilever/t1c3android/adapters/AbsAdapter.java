@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.TextView;
 
 /**
  * The type Abs adapter.
@@ -58,5 +59,17 @@ public class AbsAdapter<T> extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         return null;
+    }
+
+    /**
+     * Sets text view.
+     *
+     * @param vi         the vi
+     * @param textViewId the text view id
+     * @param text       the text
+     */
+    protected void setTextView(final View vi, final int textViewId, final String text) {
+        TextView textView = (TextView) vi.findViewById(textViewId);
+        textView.setText(text);
     }
 }

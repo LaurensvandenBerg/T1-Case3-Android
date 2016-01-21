@@ -3,7 +3,6 @@ package com.kantilever.t1c3android.adapters;
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.kantilever.t1c3android.R;
 import com.kantilever.t1c3android.domain.rest.CustomerOrder;
@@ -28,11 +27,9 @@ public class OrderAdapter extends AbsAdapter<CustomerOrder> {
         View vi = convertView;
         if (vi == null)
             vi = inflater.inflate(R.layout.order_item, null);
-        TextView orderIdTextView = (TextView) vi.findViewById(R.id.order_item_row);
-        TextView orderStatusTextView = (TextView) vi.findViewById(R.id.order_item_row_status);
         CustomerOrder order = data[position];
-        orderIdTextView.setText(order.getOrderId());
-        orderStatusTextView.setText(order.getOrderStatus());
+        setTextView(vi, R.id.order_item_row, order.getOrderId());
+        setTextView(vi, R.id.order_item_row_status, order.getOrderStatus());
         return vi;
     }
 }

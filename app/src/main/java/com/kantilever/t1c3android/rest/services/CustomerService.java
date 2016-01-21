@@ -23,7 +23,6 @@ public final class CustomerService extends AbsClient {
      * @return the customer api
      */
     public static CustomerAPI get() {
-
         return restClient;
     }
 
