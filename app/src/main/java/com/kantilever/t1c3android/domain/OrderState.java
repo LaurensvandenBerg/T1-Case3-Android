@@ -41,7 +41,7 @@ public enum OrderState {
     public static OrderState findOrderState(String name) {
         OrderState state = null;
         for (OrderState orderState : OrderState.values())
-            if (orderState.name.equals(name))
+            if (orderState.name.toLowerCase().equals(name.toLowerCase()))
                 state = orderState;
         return state;
     }
