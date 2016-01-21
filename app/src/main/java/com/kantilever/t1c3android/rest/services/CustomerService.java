@@ -2,22 +2,20 @@ package com.kantilever.t1c3android.rest.services;
 
 import com.kantilever.t1c3android.rest.apis.CustomerAPI;
 import com.kantilever.t1c3android.rest.services.abs.AbsClient;
-import com.squareup.okhttp.OkHttpClient;
-
-import retrofit.RestAdapter;
-import retrofit.client.OkClient;
 
 /**
  * The type Customer service.
  */
-public class CustomerService extends AbsClient {
-    private static CustomerAPI REST_CLIENT;
+public final class CustomerService extends AbsClient {
+    private static CustomerAPI restClient;
 
     static {
         setupRestClient();
     }
 
-    private CustomerService() {}
+    private CustomerService() {
+        super();
+    }
 
     /**
      * Get customer api.
@@ -25,16 +23,11 @@ public class CustomerService extends AbsClient {
      * @return the customer api
      */
     public static CustomerAPI get() {
-        return REST_CLIENT;
+        return restClient;
     }
 
-    private static void setupRestClient() {
-        RestAdapter.Builder builder = new RestAdapter.Builder()
-                .setEndpoint(BASE_URL)
-                .setClient(new OkClient(new OkHttpClient()))
-                .setLogLevel(RestAdapter.LogLevel.FULL);
-
-        RestAdapter restAdapter = builder.build();
-        REST_CLIENT = restAdapter.create(CustomerAPI.class);
+    protected static void setupRestClient() {
+        AbsClient.setupRestClient();
+        restClient = restAdapter.create(CustomerAPI.class);
     }
 }

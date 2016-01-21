@@ -5,12 +5,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.kantilever.t1c3android.R;
-import com.kantilever.t1c3android.domain.rest.CustomerOrder;
+import com.kantilever.t1c3android.domain.Customer;
 
 /**
- * The type Order adapter.
+ * The type Customer adapter.
  */
-public class OrderAdapter extends AbsAdapter<CustomerOrder> {
+public class CustomerAdapter extends AbsAdapter<Customer> {
 
     /**
      * Instantiates a new Order adapter.
@@ -18,7 +18,7 @@ public class OrderAdapter extends AbsAdapter<CustomerOrder> {
      * @param context the context
      * @param data    the data
      */
-    public OrderAdapter(Context context, CustomerOrder[] data) {
+    public CustomerAdapter(Context context, Customer[] data) {
         super(context, data);
     }
 
@@ -26,10 +26,10 @@ public class OrderAdapter extends AbsAdapter<CustomerOrder> {
     public View getView(int position, View convertView, ViewGroup parent) {
         View vi = convertView;
         if (vi == null)
-            vi = inflater.inflate(R.layout.order_item, null);
-        CustomerOrder order = data[position];
-        setTextView(vi, R.id.order_item_row, order.getOrderId());
-        setTextView(vi, R.id.order_item_row_status, order.getOrderStatus());
+            vi = inflater.inflate(R.layout.customer_item, null);
+        Customer customer = data[position];
+        setTextView(vi, R.id.customer_item_row, customer.getId());
+        setTextView(vi, R.id.customer_item_row_name, customer.getFirstName() + " " + customer.getLastName());
         return vi;
     }
 }

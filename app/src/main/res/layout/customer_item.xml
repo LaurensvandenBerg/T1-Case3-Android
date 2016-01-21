@@ -6,28 +6,28 @@
 
 
     <TextView
-        android:id="@+id/order_item_row_labelid"
+        android:id="@+id/customer_item_row_labelid"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/orderid" />
+        android:text="@string/customerid" />
 
     <TextView
-        android:id="@+id/order_item_row"
+        android:id="@+id/customer_item_row"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toEndOf="@id/order_item_row_labelid"/>
+        android:layout_toEndOf="@id/customer_item_row_labelid"/>
 
     <TextView
-        android:id="@+id/order_item_row_labelstatus"
+        android:id="@+id/customer_item_row_labelname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/order_item_row_labelid"
-        android:text="@string/orderstatus" />
+        android:layout_below="@id/customer_item_row_labelid"
+        android:text="@string/customername" />
 
     <TextView
-        android:id="@+id/order_item_row_status"
+        android:id="@+id/customer_item_row_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/order_item_row"
-        android:layout_toEndOf="@id/order_item_row_labelstatus"/>
+        android:layout_below="@id/customer_item_row"
+        android:layout_toEndOf="@id/customer_item_row_labelname"/>
 </RelativeLayout>

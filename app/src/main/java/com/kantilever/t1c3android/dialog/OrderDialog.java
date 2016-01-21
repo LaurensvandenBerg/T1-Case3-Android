@@ -1,53 +1,41 @@
 package com.kantilever.t1c3android.dialog;
 
-import android.app.Dialog;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
-import android.widget.Button;
-import android.widget.TextView;
 
+import com.beardedhen.androidbootstrap.BootstrapButton;
 import com.google.gson.JsonElement;
 import com.kantilever.t1c3android.R;
-import com.kantilever.t1c3android.activities.MainActivity;
+import com.kantilever.t1c3android.activities.AbsActivity;
 import com.kantilever.t1c3android.domain.OrderState;
 import com.kantilever.t1c3android.domain.rest.CustomerOrder;
 import com.kantilever.t1c3android.rest.services.OrderService;
 
-import retrofit.Callback;
-import retrofit.RetrofitError;
-import retrofit.client.Response;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * The type Order dialog.
  */
-public class OrderDialog extends Dialog {
-
-    /**
-     * The Order id text view.
-     */
-    TextView orderIdTextView;
-    /**
-     * The Order status text view.
-     */
-    TextView orderStatusTextView;
+public class OrderDialog extends AppDialog {
     /**
      * The Shipping.
      */
-    Button shipping;
+    private BootstrapButton shipping;
     /**
      * The Giftingpackage.
      */
-    Button giftingpackage;
+    private BootstrapButton giftingpackage;
     /**
      * The Customer order.
      */
-    CustomerOrder customerOrder;
+    private CustomerOrder customerOrder;
     /**
      * The Activity.
      */
-    MainActivity activity;
+    private AbsActivity activity;
 
     /**
      * Instantiates a new Order dialog.
@@ -55,7 +43,7 @@ public class OrderDialog extends Dialog {
      * @param customerOrder the customer order
      * @param activity      the activity
      */
-    public OrderDialog(final CustomerOrder customerOrder, final MainActivity activity) {
+    public OrderDialog(final CustomerOrder customerOrder, final AbsActivity activity) {
         super(activity);
         this.customerOrder = customerOrder;
         this.activity = activity;
@@ -66,18 +54,16 @@ public class OrderDialog extends Dialog {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.order_item_dialog);
-        orderIdTextView = (TextView) findViewById(R.id.order_id_dialog);
-        orderStatusTextView = (TextView) findViewById(R.id.order_status_dialog);
-        orderIdTextView.setText("Orderid: " + customerOrder.getOrderId());
-        orderStatusTextView.setText("Orderstatus: " + customerOrder.getOrderStatus());
-        shipping = (Button) findViewById(R.id.shipping);
-        giftingpackage = (Button) findViewById(R.id.giftingpackage);
+        setTextView(R.id.order_id_dialog, "Orderid: " + customerOrder.getOrderId());
+        setTextView(R.id.order_status_dialog, "Orderstatus: " + customerOrder.getOrderStatus());
+        shipping = (BootstrapButton) findViewById(R.id.shipping);
+        giftingpackage = (BootstrapButton) findViewById(R.id.giftingpackage);
         setButtons();
     }
 
     private void setButtons() {
         OrderState state = OrderState.findOrderState(customerOrder.getOrderStatus());
-        switch(state) {
+        switch (state) {
             case RUNNING:
                 giftingpackage.setOnClickListener(getOnClickListener(OrderState.PACKAGED));
                 shipping.setVisibility(View.GONE);
@@ -95,7 +81,8 @@ public class OrderDialog extends Dialog {
 
     private void update() {
         activity.refresh();
-        OrderService.get().update(customerOrder.getId(), customerOrder, getResult());
+        OrderService.get().update(customerOrder.getId(), customerOrder)
+                          .enqueue(getResult());
         dismiss();
     }
 
@@ -112,13 +99,13 @@ public class OrderDialog extends Dialog {
     private Callback<JsonElement> getResult() {
         return new Callback<JsonElement>() {
             @Override
-            public void success(JsonElement jsonElement, Response response) {
-                Log.i("SUCCESS", "JEEJ");
+            public void onResponse(Response<JsonElement> response) {
+                Log.i("SUCCESS", "SUCCES UPDATED");
             }
 
             @Override
-            public void failure(RetrofitError error) {
-                Log.i("ERROR", error.getMessage());
+            public void onFailure(Throwable t) {
+                Log.i("ERROR", t.getMessage());
             }
         };
     }

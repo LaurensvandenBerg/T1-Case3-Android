@@ -1,62 +1,62 @@
 package com.kantilever.t1c3android.rest.apis;
 
 import com.google.gson.JsonElement;
-import com.kantilever.t1c3android.domain.abs.PersistenceEntity;
+import com.kantilever.t1c3android.domain.Customer;
 
-import retrofit.Callback;
-import retrofit.http.Body;
-import retrofit.http.DELETE;
-import retrofit.http.GET;
-import retrofit.http.POST;
-import retrofit.http.PUT;
-import retrofit.http.Path;
+import retrofit2.Call;
+import retrofit2.http.Body;
+import retrofit2.http.DELETE;
+import retrofit2.http.GET;
+import retrofit2.http.POST;
+import retrofit2.http.PUT;
+import retrofit2.http.Path;
 
 /**
  * The interface Customer api.
  */
 public interface CustomerAPI {
     /**
-     * Gets all.
+     * Gets all Customers.
      *
-     * @param callback the callback
+     * @return All Customers
      */
     @GET("/customers")
-    void getAll(Callback<JsonElement> callback);
+    Call<JsonElement> getAll();
 
     /**
-     * Gets by id.
+     * Gets Customer by id.
      *
-     * @param id       the id
-     * @param callback the callback
+     * @param id the id Customer
+     * @return the Customer by id
      */
     @GET("/customers/{id}")
-    void getById(@Path("id") String id, Callback<JsonElement> callback);
+    Call<JsonElement> getById(@Path("id") String id);
 
     /**
-     * Save.
+     * Save Customer call.
      *
-     * @param entity   the entity
-     * @param callback the callback
+     * @param customer the Customer
+     * @return the call
      */
     @POST("/customers")
-    void save(@Body PersistenceEntity entity, Callback<JsonElement> callback);
+    Call<JsonElement> save(@Body Customer customer);
 
     /**
-     * Update.
+     * Update customer call.
      *
-     * @param id       the id
-     * @param entity   the entity
-     * @param callback the callback
+     * @param id     the id
+     * @param customer the customer
+     * @return the call
      */
     @PUT("/customers/{id}")
-    void update(@Path("id") String id, @Body PersistenceEntity entity, Callback<JsonElement> callback);
+    Call<JsonElement> update(@Path("id") String id, @Body Customer customer);
 
     /**
-     * Delete.
+     * Delete call.
      *
-     * @param id       the id
-     * @param callback the callback
+     * @param id the customer id
+     * @return the customer call
      */
     @DELETE("/customers/{id}")
-    void delete(@Path("id") String id, Callback<JsonElement> callback);
+    Call<JsonElement> delete(@Path("id") String id);
 }

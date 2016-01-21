@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:layout_margin="16dp"
@@ -21,15 +22,20 @@
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"/>
 
-    <Button
+    <com.beardedhen.androidbootstrap.BootstrapButton
         android:id="@+id/shipping"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/order_status_dialog"
         android:layout_marginStart="16dp"
-        android:text="@string/shipping" />
+        android:text="@string/shipping"
+        app:bootstrapBrand="primary"
+        app:bootstrapSize="lg"
+        app:buttonMode="regular"
+        app:showOutline="false"
+        app:roundedCorners="true"/>
 
-    <Button
+    <com.beardedhen.androidbootstrap.BootstrapButton
         android:id="@+id/giftingpackage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -38,6 +44,11 @@
         android:layout_below="@+id/order_status_dialog"
         android:layout_toEndOf="@+id/shipping"
         android:layout_marginStart="16dp"
-        android:text="@string/giftingpackage" />
+        android:text="@string/giftingpackage"
+        app:bootstrapBrand="primary"
+        app:bootstrapSize="lg"
+        app:buttonMode="regular"
+        app:showOutline="false"
+        app:roundedCorners="true"/>
 
 </RelativeLayout>

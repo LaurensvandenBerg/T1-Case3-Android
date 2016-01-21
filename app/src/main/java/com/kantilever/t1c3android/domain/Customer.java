@@ -123,4 +123,9 @@ public class Customer extends PersistenceEntity {
     public void setOrders(List<PurchaseOrder> orders) {
         this.orders = orders;
     }
+
+    @Override
+    public String toString() {
+        return firstName + " " + lastName;
+    }
 }

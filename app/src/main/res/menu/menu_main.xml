@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".activities.MainActivity">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
         android:id="@+id/action_search"
@@ -16,4 +14,14 @@
         android:icon="@drawable/ic_refresh"
         android:title="@string/action_menu_refresh"
         app:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/action_customers"
+        android:icon="@drawable/ic_refresh"
+        android:title="@string/action_menu_customers"/>
+
+    <item
+        android:id="@+id/action_orders"
+        android:icon="@drawable/ic_refresh"
+        android:title="@string/action_menu_orders"/>
 </menu>

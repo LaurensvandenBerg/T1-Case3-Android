@@ -7,7 +7,7 @@ public enum OrderState {
     /**
      * Running order state.
      */
-    RUNNING("Openstaand"),
+    RUNNING("Open"),
     /**
      * Packaged order state.
      */
@@ -15,7 +15,11 @@ public enum OrderState {
     /**
      * Shipped order state.
      */
-    SHIPPED("Verscheept");
+    SHIPPED("Verscheept"),
+    /**
+     * Cancelled order state.
+     */
+    CANCELLED("Geannuleerd");
 
     private String name;
 
@@ -36,8 +40,8 @@ public enum OrderState {
      */
     public static OrderState findOrderState(String name) {
         OrderState state = null;
-        for(OrderState orderState : OrderState.values())
-            if(orderState.name.equals(name))
+        for (OrderState orderState : OrderState.values())
+            if (orderState.name.toLowerCase().equals(name.toLowerCase()))
                 state = orderState;
         return state;
     }

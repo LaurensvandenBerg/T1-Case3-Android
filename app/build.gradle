@@ -2,14 +2,16 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 23
-    buildToolsVersion "23.0.2"
+    buildToolsVersion '23.0.2'
 
     defaultConfig {
         applicationId "com.kantilever.t1c3android"
         minSdkVersion 17
         targetSdkVersion 23
+        multiDexEnabled true
         versionCode 1
         versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 
     lintOptions {
@@ -31,21 +33,32 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_7
         targetCompatibility JavaVersion.VERSION_1_7
     }
+
+    sourceSets {
+        test {
+            java {
+                srcDirs = [ 'src/test/java' ]
+            }
+        }
+    }
 }
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
+    //Testing
     testCompile 'junit:junit:4.12'
+    testCompile 'org.hamcrest:hamcrest-core:1.1'
+    testCompile 'org.hamcrest:hamcrest-library:1.1'
+    testCompile 'org.hamcrest:hamcrest-integration:1.1'
+    testCompile 'org.robolectric:robolectric:3.0'
+    //JSON
+    compile 'com.squareup.retrofit2:retrofit:2.0.0-beta3'
+    compile 'com.squareup.retrofit2:converter-gson:2.0.0-beta3'
+    compile 'com.squareup.okio:okio:1.0.1'
 
-
-
+    compile 'com.beardedhen:androidbootstrap:2.0.1'
     compile 'com.android.support:appcompat-v7:23.1.1'
     compile 'com.android.support:design:23.1.1'
-    compile 'com.google.code.gson:gson:2.4'
-    compile 'com.squareup.retrofit:retrofit:1.6.1'
-    compile 'com.squareup.okhttp:okhttp-urlconnection:2.0.0'
-    compile 'com.squareup.okhttp:okhttp:2.0.0'
-    compile 'com.squareup.okio:okio:1.0.1'
     compile 'org.projectlombok:lombok:1.16.6'
     compile 'javax.annotation:javax.annotation-api:1.2'
     compile 'com.android.support:support-v4:23.1.1'
